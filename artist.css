@@ -1,0 +1,130 @@
+:root {
+        --bg-body: #0d0e12;
+        --bg-container: #14171f;
+        --bg-card: #1e222c;
+        --text-main: #f5f5f5;
+        --text-sub: #b0b8c1;
+        --accent: #00ff7f;
+        --border: #2f333d;
+        --shadow: rgba(0, 0, 0, 0.6);
+    }
+
+    body.light {
+        --bg-body: #f5f7fa; --bg-container: #ffffff; --bg-card: #f9fafb;
+        --text-main: #1f2937; --text-sub: #4b5563; --accent: #00c46a;
+        --border: #e5e7eb; --shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    body.gold {
+        --bg-body: #1f1809; --bg-container: #fffdf4; --bg-card: #fef7e8;
+        --text-main: #4b3a00; --text-sub: #8a7d4f; --accent: #daa520;
+        --border: #e6d5a3; --shadow: rgba(68, 51, 0, 0.2);
+    }
+
+    body.red {
+        --bg-body: #2b0a0a; --bg-container: #fff2f2; --bg-card: #ffe6e6;
+        --text-main: #990000; --text-sub: #cc6666; --accent: #ff4c4c;
+        --border: #ffcccc; --shadow: rgba(153, 0, 0, 0.15);
+    }
+
+    body.green {
+        --bg-body: #061b12; --bg-container: #f1fff5; --bg-card: #e3f9eb;
+        --text-main: #065038; --text-sub: #2e6a50; --accent: #10b981;
+        --border: #bbf7d0; --shadow: rgba(6, 78, 59, 0.15);
+    }
+
+    /* 2. Артисттердин тизмесинин структурасы */
+    * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      padding: 20px 15px 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--text-main);
+      text-transform: uppercase;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 20px;
+      background-color: var(--accent);
+      margin-right: 10px;
+      border-radius: 2px;
+    }
+
+    .search-wrapper {
+      padding: 0 15px 15px;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    #searchInput::placeholder {
+      color: var(--text-sub);
+    }
+
+    /* Артисттер тизмеси */
+    .artist-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .artist-item:active {
+      background-color: var(--accent-dim, rgba(0, 255, 127, 0.1));
+    }
+
+    .artist-image-circle {
+      width: 45px;
+      height: 45px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      margin-right: 15px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .artist-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .artist-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .artist-sub {
+      font-size: 13px;
+      color: var(--text-sub);
+    }

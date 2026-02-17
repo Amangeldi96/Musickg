@@ -1,0 +1,170 @@
+:root {
+    /* Dark Theme (Default) */
+    --bg-body: #0d0e12; /* караңгы жумшак фон */
+    --bg-container: #14171f;
+    --bg-card: #1e222c;
+    --bg-side-menu: #0d0e12;
+    --text-main: #f5f5f5; /* негизги тексттер ачык */
+    --text-sub: #b0b8c1; /* субтекст жумшак окулчу */
+    --accent: rgba(0, 196, 106);
+    --accent-dim: rgba(0, 255, 127, 0.2);
+    --border: #2f333d;
+    --shadow: rgba(0, 0, 0, 0.6);
+    --progress-bg: rgba(255, 255, 255, 0.08);
+}
+
+body.light {
+    --bg-body: #f5f7fa;
+    --bg-container: #ffffff;
+    --bg-card: #f9fafb;
+    --bg-side-menu: #ffffff;
+    --text-main: #1f2937;
+    --text-sub: #4b5563;
+    --accent: #00c46a;
+    --accent-dim: rgba(0, 196, 106, 0.15);
+    --border: #e5e7eb;
+    --shadow: rgba(0, 0, 0, 0.08);
+    --progress-bg: rgba(0, 0, 0, 0.05);
+}
+
+body.gold {
+    --bg-body: #1f1809;
+    --bg-container: #fffdf4;
+    --bg-card: #fef7e8;
+    --bg-side-menu: #fffdf4;
+    --text-main: #4b3a00;
+    --text-sub: #8a7d4f;
+    --accent: #daa520;
+    --accent-dim: rgba(218, 165, 32, 0.2);
+    --border: #e6d5a3;
+    --shadow: rgba(68, 51, 0, 0.2);
+    --progress-bg: rgba(218, 165, 32, 0.08);
+}
+
+body.red {
+    --bg-body: #2b0a0a;
+    --bg-container: #fff2f2;
+    --bg-card: #ffe6e6;
+    --bg-side-menu: #fff2f2;
+    --text-main: #990000;
+    --text-sub: #cc6666;
+    --accent: #ff4c4c;
+    --accent-dim: rgba(255, 76, 76, 0.2);
+    --border: #ffcccc;
+    --shadow: rgba(153, 0, 0, 0.15);
+    --progress-bg: rgba(255, 76, 76, 0.08);
+}
+
+body.green {
+    --bg-body: #061b12;
+    --bg-container: #f1fff5;
+    --bg-card: #e3f9eb;
+    --bg-side-menu: #f1fff5;
+    --text-main: #065038;
+    --text-sub: #2e6a50;
+    --accent: #10b981;
+    --accent-dim: rgba(16, 185, 129, 0.2);
+    --border: #bbf7d0;
+    --shadow: rgba(6, 78, 59, 0.15);
+    --progress-bg: rgba(16, 185, 129, 0.08);
+}
+
+/* ===================== БАРДЫК ЭЛЕМЕНТТЕРДИ БАЙЛОО ===================== */
+* { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+body { background-color: var(--bg-body) !important; color: var(--text-main); }
+#main-container { background-color: var(--bg-container) !important; color: var(--text-main); }
+.side-menu { background-color: var(--bg-side-menu); }
+
+/* Logo & Hamburger */
+.logo-text { color: var(--text-main) !important; }
+.menu-btn span { background: var(--text-main) !important; }
+
+/* Headers & Lines */
+h2, .name { 
+    color: var(--text-main); 
+    border-left: 5px solid var(--accent) !important; 
+}
+
+/* Cards (Блоктор) */
+.block { 
+    background: var(--bg-card) !important; 
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+.block-text b { color: var(--text-main); }
+.block-text p { color: var(--text-sub); }
+
+/* Artist Cards & Tables */
+.artist-detail-card { 
+    background: var(--bg-card) !important; 
+    border: 1px solid var(--border) !important; 
+}
+.tabl td { border-bottom: 1px solid var(--border) !important; color: var(--text-main); }
+.tdr { color: var(--text-sub) !important; }
+
+/* Upcoming Cards */
+.upcoming-card { 
+    background: var(--bg-card) !important; 
+    border: 1px solid var(--border) !important; 
+    box-shadow: 0 6px 15px var(--shadow);
+}
+.card-content b { color: var(--accent) !important; }
+.card-content p { color: var(--text-sub) !important; }
+.upcoming-badge { background-color: var(--accent) !important; color: #fff; }
+
+/* Progress Bar */
+.progress-container { background-color: var(--progress-bg); }
+.progress-bg { background-color: var(--accent) !important; opacity: 0.3; }
+
+/* Play Buttons */
+.mini-play, .upcoming-play, .play-icon-circle { 
+    background-color: var(--accent) !important; 
+    color: #fff !important; 
+}
+
+/* Theme Toggle UI */
+.theme-toggle svg { fill: var(--text-main); cursor: pointer; }
+.theme-options {
+    position: absolute; top: 45px; right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 10px; border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    display: none; flex-direction: column; gap: 8px;
+    z-index: 2000;
+}
+.theme-toggle.open .theme-options { display: flex; }
+.theme-option { 
+    width: 30px; height: 30px; border-radius: 50%; 
+    border: 2px solid var(--border); cursor: pointer; 
+}
+/* Динамикалык түзүлгөн ырлардын тексти */
+.song-item .song-name b {
+    color: var(--text-main); /* баш текст (title) */
+}
+
+.song-item .song-name span {
+    color: var(--text-sub); /* subtext (artist) */
+}
+.theme-options {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+}
+
+/* Theme option (кнопкалар) */
+.theme-option {
+    border: 2px solid var(--border);
+    background-color: var(--bg-card);
+}
+
+/* Theme toggle иконка */
+.theme-toggle svg {
+    fill: var(--text-main);
+}
+
+
+
+
+

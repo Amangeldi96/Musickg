@@ -1,0 +1,360 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        
+:root {
+    --bg-side-menu: #0d0e12;
+    --text-main: #f5f5f5;
+    --text-sub: #b0b8c1;
+    /* Негизги жашыл түс */
+    --accent: #00ff7f; 
+    /* Тунук жашыл (фондор үчүн) - 0.02 өтө аз, 0.1 же 0.2 кылыңыз */
+    --accent-dim: rgba(255, 16, 185, 130); 
+    --menu-width: 80%;
+}
+
+body {
+    /* Текстти белгилөөнү өчүрүү */
+    -webkit-user-select: none; /* Safari үчүн */
+    -moz-user-select: none;    /* Firefox үчүн */
+    -ms-user-select: none;     /* IE/Edge үчүн */
+    user-select: none;         /* Стандарттык браузерлер үчүн */
+    
+    /* Сүрөттөрдү кармап (drag) тартканды өчүрүү */
+    -webkit-user-drag: none;
+    
+    /* Мобилдик телефондордо басканда чыгуучу менюну өчүрүү (контексттик меню) */
+    -webkit-touch-callout: none;
+}
+
+
+        body { 
+    /* Меню ачылганда контенттин артында көрүнө турган түс */
+    background-color: var(--bg-side-menu); 
+    overflow-x: hidden; 
+           width: 100%;
+           position: relative;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--bg-side-menu);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+
+body.menu-open::after {
+    opacity: 1;
+}
+
+    body.menu-open .menu-btn {
+    pointer-events: auto;
+    z-index: 1002;
+}
+
+        /* НЕГИЗГИ МАЙДАН - Сиздин стилдер сакталды */
+        #main-container {
+    background-color: var(--bg-container);
+    color: white;
+    padding: 15px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+
+    position: relative;
+    left: 0;
+
+    transition:
+        left 0.45s cubic-bezier(0.77, 0, 0.175, 1),
+        border-radius 0.45s,
+        box-shadow 0.45s;
+
+    z-index: 1;
+}
+
+        /* МЕНЮ АЧЫЛГАНДАГЫ ЭФФЕКТ */
+        body.menu-open #main-container {
+    left: var(--menu-width); /* translateX ЖОК */
+    border-radius: 15px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+
+        /* HEADER & LOGO */
+        header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 10px 0; }
+        
+        /* HAMBURGER TO "X" ANIMATION */
+        .menu-btn {
+            width: 28px; height: 20px;
+            position: relative; cursor: pointer; z-index: 1001;
+        }
+        .menu-btn span {
+            display: block; position: absolute; height: 3px; width: 100%;
+            background: #fff; border-radius: 9px; transition: .3s ease-in-out;
+        }
+        .menu-btn span:nth-child(1) { top: 0px; }
+        .menu-btn span:nth-child(2) { top: 8px; }
+        .menu-btn span:nth-child(3) { top: 16px; }
+
+        body.menu-open .menu-btn span:nth-child(1) { top: 8px; transform: rotate(135deg); }
+        body.menu-open .menu-btn span:nth-child(2) { opacity: 0; left: -20px; }
+        body.menu-open .menu-btn span:nth-child(3) { top: 8px; transform: rotate(-135deg); }
+
+        .logo-text { font-size: 22px; font-weight: bold; color: #fff; letter-spacing: 1px; }
+
+        /* SIDE MENU */
+        .side-menu {
+            position: fixed;
+            top: 0; left: 0; width: 70%; height: 100%;
+            z-index: 1;
+            padding: 80px 30px;
+            transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+            transform: translateX(-100%);
+            width: var(--menu-width);
+            background-color: var(--bg-side-menu);
+            color: var(--text-main);
+    } 
+
+body.menu-open .side-menu {
+    transform: translateX(0);
+}
+
+
+
+        .menu-items { list-style: none; }
+       .menu-items li {
+    display: block;
+    width: 100%;   /* МААНИЛҮҮ */
+    max-width: 100%;
+    padding: 12px 14px;
+    border-radius: 8px;
+    color: var(--text-main);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+    .menu-items li:hover {
+    background: var(--accent-dim);
+    color: var(--text-main);
+}
+        /* CONTENT STYLES (Сиздин стилдер өзгөрүүсүз) */
+        h2, .name { 
+            font-size: 18px; 
+            text-transform: uppercase; 
+            margin: 20px 0; 
+            border-left: 5px solid rgba(0, 255, 127, 0.02); 
+            padding-left: 10px;
+        }
+
+
+
+        .block-con { width: 100%; overflow-x: auto; scrollbar-width: none; }
+        .block-con::-webkit-scrollbar { display: none; }
+        .content { display: flex; gap: 20px; padding-bottom: 10px; }
+        .block { width: 160px; min-width: 160px; height: 240px; background: #fff; border-radius: 10px; color: #333; position: relative; flex-shrink: 0; overflow: hidden; }
+        .block-text { padding: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .block-text b, .block-text p { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .song-image { width: 100%; height: 140px; background-color: #ccc; background-size: cover; background-position: center; border-radius: 9px 9px 0 0; }
+        .artist-detail-card { min-width: 280px; background: #161b22; border-radius: 12px; padding: 15px; border: 1px solid #30363d; color: white; }
+        .tabl { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+        .tabl td { padding: 6px 0; border-bottom: 1px solid #21262d; }
+        .tdr { color: #8b949e; width: 45%; }
+
+        /* BUTTONS (БУЛ ЖЕР ӨЗГӨРГӨН ЖОК) */
+        .mini-play, .play-icon-circle { cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .mini-play { position: absolute; right: 10px; bottom: 10px; width: 35px; height: 35px; background: rgba(4,184,95); border-radius: 50%; }
+        .play-icon-circle { width: 35px; height: 35px; background: rgba(0,255,127,0.70); border-radius: 50%; margin-right: 15px; flex-shrink: 0; }
+        .play-pause-icon { position: relative; width: 14px; height: 14px; }
+        .bar { position: absolute; background: white; border-radius: 1px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .is-playing .bar-1 { left: 0; top: 0; width: 14px; height: 14px; clip-path: polygon(15% 0%, 100% 50%, 15% 100%); }
+        .is-playing .bar-2 { left: 10px; top: 14px; width: 4px; height: 0px; opacity: 0; }
+        .is-paused .bar-1 { left: 0; top: 0; width: 4px; height: 14px; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+        .is-paused .bar-2 { left: 9px; top: 0; width: 4px; height: 14px; opacity: 1; transition-delay: 0.1s; }
+        .song-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .song-name { font-size: 15px; color: #e0e0e0; flex: 1; }
+        .song-name span { display: block; font-size: 12px; color: #8b949e; margin-top: 2px; }
+
+        /* CLOSE CLICK AREA */
+        .close-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; display: none;
+        }
+        body.menu-open .close-layer { display: block; }
+    
+    /*new*/
+    /* === UPCOMING SONG CARD === */
+.upcoming-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.upcoming-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #0d1117, #1b2532);
+    border-radius: 14px;
+    border: 1px solid #2e3b4e;
+    position: relative;
+    /* overflow: hidden;  <-- МУНУ ӨЧҮРДҮК, ЭМИ BADGE СЫРТКА ЧЫГАТ */
+    z-index: 1;
+}
+
+/* Жаңы прогресс-контейнер (картанын бурчтарын кесип турат) */
+.progress-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px; /* Картанын радиусу менен бирдей */
+    overflow: hidden;    /* Прогресс-барды ушул кесет */
+    z-index: -1;         /* Тексттин артында */
+    pointer-events: none;
+}
+
+.progress-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: rgba(51, 54, 61, 0.30);
+    transition: width 0.1s linear;
+}
+
+.upcoming-badge {
+    position: absolute;
+    top: -10px; /* Эми сыртка чыгат */
+    left: 45px;
+    transform: translateX(-50%);
+    background-color: rgba(0,255,127,0.15);;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 8px;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+
+.upcoming-card .cover {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0; /* текстти батпай калбоо */
+    gap: 4px;
+}
+
+.card-content b {
+    font-size: 16px;
+    font-weight: 700;
+    color: #00ff7f;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-content p {
+    font-size: 14px;
+    color: #cfd8e6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* максимум 2 сап */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.upcoming-play {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(0, 255, 127, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+    
+    
+    /* ===================== HEADER ===================== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    position: relative;
+    z-index: 100;
+    background: transparent; /* фон жок */
+}
+
+/* Logo */
+.logo-text { font-size: 22px; font-weight: bold; }
+
+/* Hamburger */
+.menu-btn { width:28px; height:20px; cursor:pointer; position:relative; z-index:101; }
+.menu-btn span { display:block; position:absolute; height:3px; width:100%; border-radius:3px; transition:.3s ease; }
+.menu-btn span:nth-child(1){top:0; background:#111;}
+.menu-btn span:nth-child(2){top:8px; background:#111;}
+.menu-btn span:nth-child(3){top:16px; background:#111;}
+body.menu-open .menu-btn span:nth-child(1){ top:8px; transform:rotate(135deg);}
+body.menu-open .menu-btn span:nth-child(2){ opacity:0; left:-20px;}
+body.menu-open .menu-btn span:nth-child(3){ top:8px; transform:rotate(-135deg);}
+
+svg{
+    width: 25px;
+    height: 25px;
+}
+
+.artist-detail-card .artist-name {
+    color: var(--accent); /* тема боюнча түс өзгөрөт */
+    border-bottom: 1px solid var(--border);
+    display: block;
+    padding-bottom: 5px;
+}
+    
+
+.play-icon-circle, .mini-play, .upcoming-play {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+}
+
+.play-icon-circle svg, .mini-play svg, .upcoming-play svg {
+    display: block;
+    /* Эгер иконка дагы эле өйдө же төмөн болуп жатса, 
+       төмөнкү margin'ди колдонуңуз: */
+    margin: auto; 
+}
+
+
+
+
+.is-loading-circle { 
+    animation: rotate 1s linear infinite; 
+    border: 2px solid rgba(255,255,255,0.3); 
+    border-top-color: #fff; 
+    border-radius: 50%; 
+    width: 16px; /* 18ден 16га кичирейттик */
+    height: 16px;
+    display: block;
+    margin: auto;
+}

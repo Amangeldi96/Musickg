@@ -1,0 +1,79 @@
+/* ===================== СТОРИЗ СТИЛДЕРИ (АКЦЕНТ ЖАНА ЖООНОРУУ) ===================== */
+.stories-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 15px;
+    gap: 15px;
+    scrollbar-width: none;
+    background: transparent;
+}
+.stories-container::-webkit-scrollbar { display: none; }
+
+.story-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+.story-item p { margin-top: 8px; font-size: 11px; color: var(--text-main); font-weight: 500; }
+
+/* ЖАҢЫ ИСТОРИЯ: Теманын акцент түсү (мисалы, жашыл) */
+.story-circle {
+    width: 76px; height: 76px; border-radius: 50%;
+    background: var(--accent); 
+    display: flex; justify-content: center; align-items: center;
+    box-sizing: border-box; flex-shrink: 0;
+    transition: background 0.4s ease;
+}
+
+/* КӨРҮЛГӨН ИСТОРИЯ: Темадагы border түсү */
+.story-item.viewed .story-circle { 
+    background: var(--border) !important; 
+}
+
+.video-wrapper {
+    width: 68px; height: 68px; border-radius: 50%;
+    overflow: hidden; 
+    border: 3px solid var(--bg-body); 
+    background: #000;
+}
+.video-wrapper video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* --- ПРОГРЕСС-БАР ЖАНА АНЫН ЖООНОРУУСУ --- */
+#storyFullscreen {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background: #000; z-index: 9999;
+}
+
+.status-bar-container {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 40px; z-index: 10001; cursor: pointer;
+    display: flex; align-items: center; padding: 0 10px;
+}
+
+/* Негизги сызыктын фону */
+.status-bar-bg {
+    width: 100%; height: 4px; /* Кадимки абалы */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px; position: relative;
+    transition: height 0.2s ease; /* Жооноруу анимациясы */
+}
+
+/* БАСКАНДА ЖООНОРУУ: Контейнер "active" болгондо */
+.status-bar-container.active .status-bar-bg {
+    height: 10px; /* Сүйрөп жатканда же басканда жоонорот */
+}
+
+/* Толтуруучу сызык (Акцент түстө) */
+.status-bar-fill {
+    height: 100%; width: 0%; 
+    background: var(--accent); /* Темадагы жашыл түс */
+    border-radius: 10px; 
+    transition: width 0.1s linear;
+}
+
+/* Сүйрөп жатканда плавность анимациясын өчүрөбүз (видеого кошо так ээрчиши үчүн) */
+.status-bar-container.active .status-bar-fill {
+    transition: none;
+}
+
+#mainVideo { width: 100%; height: 100%; object-fit: contain; }
+.close-btn { 
+    position: absolute; top: 25px; right: 20px; color: #fff; 
+    font-size: 40px; z-index: 10002; cursor: pointer; line-height: 1; 
+}

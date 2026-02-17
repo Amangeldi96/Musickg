@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music App Mobile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="hits.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('selected-app-theme') || 'dark';
+            document.documentElement.classList.add(savedTheme);
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.classList.add(savedTheme);
+            });
+        })();
+    </script>
+</head>
+<body>
+    <div class="side-menu">
+        <ul class="menu-items">
+            <li onclick="location.href='index.html'">Башкы бет</li>
+            <li onclick="location.href='video.html'">Видео клиптер</li>
+            <li onclick="location.href='album.html'">Альбом</li>
+            <li onclick="location.href='hits.html'">Жаңы хиттер</li>
+            <li onclick="location.href='artists.html'">Артисттер</li>
+            <li onclick="location.href='contact.html'">Байланыш</li>
+        </ul>
+    </div>
+
+    <div id="main-container">
+        <div class="close-layer" onclick="toggleMenu()"></div>
+        
+        <header>
+            <div class="menu-btn" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="logo-text">MUSIC KG</div>
+            
+            <div class="theme-toggle" onclick="this.classList.toggle('open')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" height="48" width="48">
+                    <path fill="currentColor" fill-rule="evenodd" d="M24.1256 0.5C11.1167 0.5 0.560547 11.0156 0.560547 24S11.1167 47.5 24.1256 47.5c1.7063 0 3.3964-0.1683 4.7925-0.6993 1.4429-0.5488 2.8022-1.592 3.2445-3.3955 0.1485-0.6057 0.2368-1.2135 0.19-1.8837-0.0459-0.6575-0.214-1.2611-0.4329-1.8649-0.2128-0.5869-0.5111-1.2713-0.8608-2.0731l-0.0381-0.0872c-0.3514-0.8054-0.7792-1.7858-1.2952-3.0399-0.7314-1.7777 0.1209-3.1278 0.918-3.5252 0.1455-0.0725 0.4611-0.1736 1.0334-0.2477 0.5519-0.0714 1.2263-0.1043 2.0207-0.1117 0.7916-0.0075 1.6502 0.0103 2.5743 0.0297l0.0169 0.0003c0.9078 0.0191 1.8726 0.0393 2.8333 0.0338 5.129-0.0293 9.0421-4.3163 8.3621-9.4742C45.9995 9.90005 36.2264 0.5 24.1256 0.5ZM4.56055 24c0-10.7639 8.75385-19.5 19.56505-19.5 9.9767 0 18.155 7.7945 19.393 17.1843 0.3544 2.6876-1.6132 4.9354-4.4192 4.9514-0.9044 0.0051-1.8219-0.014-2.7436-0.0333l-0.0132-0.0003c-0.9061-0.019-1.8231-0.0382-2.6824-0.0302-0.8606 0.0081-1.7159 0.0436-2.497 0.1448-0.7608 0.0985-1.5815 0.2744-2.3042 0.6347-2.7609 1.3763-4.3245 5.0008-2.8325 8.627 0.5323 1.2936 0.9743 2.3066 1.3262 3.1132l0.0399 0.0914c0.3668 0.8409 0.6065 1.3955 0.7666 1.8369 0.1538 0.4244 0.1932 0.6381 0.2031 0.78 0.009 0.1291 0.0012 0.3025-0.0846 0.6527-0.0266 0.1082-0.1012 0.3506-0.7816 0.6094-0.7273 0.2766-1.85 0.438-3.3705 0.438-10.8112 0-19.56505-8.7361-19.56505-19.5ZM22 14c0-3.3137 2.6863-6 6-6s6 2.6863 6 6-2.6863 6-6 6-6-2.6863-6-6ZM9 21.5c0-3.0376 2.4624-5.5 5.5-5.5s5.5 2.4624 5.5 5.5-2.4624 5.5-5.5 5.5S9 24.5376 9 21.5Zm5 13c0-2.4853 2.0147-4.5 4.5-4.5s4.5 2.0147 4.5 4.5-2.0147 4.5-4.5 4.5-4.5-2.0147-4.5-4.5Z" clip-rule="evenodd" stroke-width="1"></path>
+                </svg>
+                <div class="theme-options">
+                    <div class="theme-option" style="background:#ffffff" onclick="changeTheme('light')"></div>
+                    <div class="theme-option" style="background:#111111" onclick="changeTheme('dark')"></div>
+                    <div class="theme-option" style="background:#ffd700" onclick="changeTheme('gold')"></div>
+                    <div class="theme-option" style="background:#00c46a" onclick="changeTheme('green')"></div>
+                    <div class="theme-option" style="background:#ff6b6b" onclick="changeTheme('red')"></div>
+                </div>
+            </div>
+        </header>
+      <h2 class="name">Жаңы хиттер</h2>
+      
+      <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Ыр же артист издөө..." oninput="searchSongs()">
+    <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20">
+        <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    </svg>
+</div>
+
+      
+        <div class="song-list" id="allList"></div>
+      <div id="playerBar" class="player-bar">
+    <div class="p-progress-container" id="pCont">
+        <div class="p-progress-bg"></div>
+        <div class="p-progress-fill" id="pFill"></div>
+    </div>
+    <div class="p-content">
+        <div class="p-info">
+            <b id="pTitle">Название</b>
+            <span id="pArtist">Артист</span>
+        </div>
+        <div class="p-controls">
+    <button id="nextBtn" class="control-btn">
+        <svg width="90px" height="90px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="SVGRepo_iconCarrier"> 
+    <path d="M3.98047 3.51001C1.43047 4.39001 0.980469 9.09992 0.980469 12.4099C0.980469 15.7199 1.41047 20.4099 3.98047 21.3199C6.69047 22.2499 14.9805 16.1599 14.9805 12.4099C14.9805 8.65991 6.69047 2.58001 3.98047 3.51001Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> 
+    <path d="M23 5.92004C23 4.53933 21.8807 3.42004 20.5 3.42004C19.1193 3.42004 18 4.53933 18 5.92004V18.92C18 20.3008 19.1193 21.42 20.5 21.42C21.8807 21.42 23 20.3008 23 18.92V5.92004Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> 
+  </g>
+</svg>
+
+    </button>
+    <div id="mainPlayBtn" onclick="toggleMainPlay()"></div>
+</div>
+    </div>
+</div>
+
+
+    <div id="ytPlayer" style="display:none;"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script src="header.js"></script>
+   <script src="script.js"></script>
+       <script src="hits.js"></script>
+</body>
+</html>
